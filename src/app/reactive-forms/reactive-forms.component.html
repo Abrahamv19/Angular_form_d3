@@ -1,0 +1,62 @@
+
+<!-- PODRIA AGREGAR EL METODO ONSUBMIT() DENTRO DEL FORM) -->
+<form [formGroup]="studentForm"> 
+    <div class="mb-3 row">
+        <H1>FORMULARIO DE REGISTRO DE ALUMNO</H1>
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10 input-group has-validation">
+          <input formControlName="email" type="text"  class="form-control" [ngClass]="{'is-invalid':studentForm.controls['email'].invalid && studentForm.controls['email'].touched}"  placeholder="Ingresa tu email">
+          <div class="invalid-feedback">
+            <ng-container *ngIf="emailControl.errors?.['required']">
+                Este campo es requerido
+            </ng-container>
+            <ng-container *ngIf="emailControl.errors?.['email']">
+                Debes ingresar un correo valido
+            </ng-container>
+            
+          </div>
+        </div>
+      
+      </div>
+      <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10 input-group has-validation">
+          <input formControlName="password" type="password" class="form-control" [ngClass]="{'is-invalid':passwordControl.invalid && passwordControl.touched}" placeholder="Ingresa tu password" id="inputPassword">
+        <!-- <div class="invalid-feedback">
+          <ng-container *ngIf="passwordControl.errors?.['required']">
+            Este campo es requerido
+          </ng-container>
+          <ng-container *ngIf="passwordControl.errors?.['password']">
+            Debes ingresar un password valido
+          </ng-container>
+        </div> -->
+          <div class="invalid-feedback">
+            Para continuar debes ingresar una password y no debe superar los 10 caracteres 
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="inputCourse" class="col-sm-2 col-form-label">Curso</label>
+        <div class="col-sm-10 input-group has-validation">
+            <input formControlName="curso" type="text" class="form-control" [ngClass]="{'is-invalid':cursoControl.invalid && cursoControl.touched}" placeholder="Ingresa tu curso" >
+            <div class="invalid-feedback">
+                Para continuar debes ingresar un curso, no puede ser Vue y no debe superar los 40 caracteres 
+            </div>
+        </div>
+      </div>
+      <button [disabled]="studentForm.invalid" (click)="onSubmit()" class="btn btn-success" type="submit">Ingresar</button>
+</form>
+<br>
+<!-- <h5>Errores de curso control: </h5>
+<pre>
+    {{studentForm.controls['curso'].errors | json}}
+</pre> -->
+<!-- <h5>Errores de email control: </h5>
+<pre>
+    {{emailControl.errors | json}}
+</pre>
+<hr>
+<br>
+<div>
+    {{studentForm.value | json}}
+</div> -->
